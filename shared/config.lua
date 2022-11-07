@@ -36,13 +36,13 @@ Config.Blacklist = {
 	"dilettante",
 	"khamelion",
 	"wheelchair",
-    	"bmx",
-    	"tribike3",
-    	"fixter",
-    	"cruiser",
-    	"scorcher",
-    	"tribike2",
-    	"tribike",
+    "bmx",
+    "tribike3",
+    "fixter",
+    "cruiser",
+    "scorcher",
+    "tribike2",
+    "tribike",
 }
 
 -- Class multipliers. If you want SUVs to use less fuel, you can change it to anything under 1.0, and vise versa.
