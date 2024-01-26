@@ -8,7 +8,9 @@ A NoPixel inspired functionality fuel system that uses PolyZones that target spe
 ### Dependencies:
 * [qb-target](https://github.com/BerkieBb/qb-target)
 * [qb-menu](https://github.com/qbcore-framework/qb-menu)
+* [qb-input](https://github.com/qbcore-framework/qb-input)
 * [polyzone](https://github.com/qbcore-framework/PolyZone)
+* [interact-sound](https://github.com/qbcore-framework/interact-sound)
 
 <br>
 <br>
@@ -37,26 +39,29 @@ Open your entire resources folder with Visual Studio Code (or whichever program 
 First copy the snippet below and then navigate to your **qb-smallresources/client/ignore.lua**
 
 ```lua
-Citizen.CreateThread(function()
+RegisterNetEvent('QBCore:Client:DrawWeapon', function()
+    local sleep
     while true do
+        sleep = 500
         local ped = PlayerPedId()
         local weapon = GetSelectedPedWeapon(ped)
-		if weapon ~= GetHashKey("WEAPON_UNARMED") then
-			if IsPedArmed(ped, 6) then
-				DisableControlAction(1, 140, true)
-				DisableControlAction(1, 141, true)
-				DisableControlAction(1, 142, true)
-			end
+        if weapon ~= `WEAPON_UNARMED` then
+            if IsPedArmed(ped, 6) then
+                sleep = 0
+                DisableControlAction(1, 140, true)
+                DisableControlAction(1, 141, true)
+                DisableControlAction(1, 142, true)
+            end
 
-			if weapon == GetHashKey("WEAPON_FIREEXTINGUISHER")then
-				if IsPedShooting(ped) then
-					SetPedInfiniteAmmo(ped, true, GetHashKey("WEAPON_FIREEXTINGUISHER"))
-				end
-			end
-		else
-			Citizen.Wait(500)
-		end
-        Citizen.Wait(7)
+            if weapon == `WEAPON_FIREEXTINGUISHER` then
+                if IsPedShooting(ped) then
+                    SetPedInfiniteAmmo(ped, true, weapon)
+                end
+            end
+        else
+            break
+        end
+        Wait(sleep)
     end
 end)
 ```
@@ -109,6 +114,9 @@ end)
 After it takes you to spot we need, copy this snippet and paste it over the few lines shown in the GIF below.
 
 ![Code_yecDDjuRVG](https://user-images.githubusercontent.com/91661118/169425085-6eaeead9-9398-4ac0-8e0f-b6d116326e97.gif)
+
+### Step 5:
+Copy the sounds inside the sounds folder and paste/drag it into your interact-sounds folder located at resources/[standalone]/interact-sound/client/html/sounds
 
 <br>
 <br>
